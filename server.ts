@@ -50,7 +50,7 @@ async function startServer() {
         
         ESTRUCTURA DE SALIDA OBLIGATORIA (Markdown):
         
-        # Alerta CTI – [CVE-ID]
+        # Alerta CTI - [CVE-ID]
 
         ## Resumen Ejecutivo
         Breve descripción de la vulnerabilidad, indicando el componente afectado, tipo de falla y nivel de riesgo.
@@ -69,9 +69,19 @@ async function startServer() {
         - Fuente: [NVD / Vendor / etc.]
 
         ## Matriz de Riesgo CVSS v3.1
-        | Producto | Componente | Protocolo | ¿Explotable remotamente sin autenticación? | Puntaje Base | Vector de Ataque | Complejidad del Ataque | Privilegios Requeridos | Interacción del Usuario | Alcance | Confidencialidad | Integridad | Disponibilidad |
-        |----------|-----------|-----------|--------------------------------------------|--------------|------------------|------------------------|------------------------|------------------------|---------|------------------|------------|----------------|
-        | [Producto] | [Componente] | [Protocolo] | Sí / No | X.X | Red / Local | Baja / Alta | Ninguno / Bajo / Alto | Ninguna / Requerida | Sin cambio / Cambiado | Ninguno / Bajo / Alto | Ninguno / Bajo / Alto | Ninguno / Bajo / Alto |
+        - Producto: [Producto]
+        - Componente: [Componente]
+        - Protocolo: [Protocolo]
+        - ¿Explotable remotamente sin autenticación?: Sí / No
+        - Puntaje Base: X.X
+        - Vector de Ataque: Red / Local
+        - Complejidad del Ataque: Baja / Alta
+        - Privilegios Requeridos: Ninguno / Bajo / Alto
+        - Interacción del Usuario: Ninguna / Requerida
+        - Alcance: Sin cambio / Cambiado
+        - Confidencialidad: Ninguno / Bajo / Alto
+        - Integridad: Ninguno / Bajo / Alto
+        - Disponibilidad: Ninguno / Bajo / Alto
 
         ## Debilidad
         Descripción detallada de la vulnerabilidad:
@@ -112,7 +122,7 @@ async function startServer() {
         - Acción requerida: Aplicar actualizaciones de seguridad del proveedor
         Mitigaciones adicionales:
         - [Lista de mitigaciones]
-        
+
         ## Referencias
         - [Lista de URLs de Advisory, NVD, MITRE, CISA KEV]
       `;
