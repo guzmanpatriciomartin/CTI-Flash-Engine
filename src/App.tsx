@@ -158,7 +158,7 @@ export default function App() {
                 </div>
               </div>
               <h3 className="mt-6 text-xl font-bold text-slate-900">Generando Reporte CTI...</h3>
-              <p className="text-slate-500 mt-2 animate-pulse">Realizando búsqueda y procesando con IA</p>
+              <p className="text-slate-500 mt-2 animate-pulse">Buscando en linea y procesando con IA</p>
             </motion.div>
           )}
         </AnimatePresence>

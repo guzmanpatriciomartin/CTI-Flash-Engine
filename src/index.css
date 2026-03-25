@@ -2,34 +2,40 @@
 
 @layer base {
   .cti-report {
-    @apply text-slate-800 leading-relaxed;
+    @apply text-black leading-relaxed;
   }
   .cti-report h1 {
-    @apply text-4xl font-bold text-slate-900 mb-6 border-b-2 border-blue-600 pb-2;
+    @apply text-3xl font-bold text-black mb-6 uppercase tracking-tight;
   }
   .cti-report h2 {
-    @apply text-2xl font-semibold text-blue-700 mt-8 mb-4 border-b border-slate-200 pb-1;
+    @apply text-xl font-bold text-black mt-10 mb-4 border-t-2 border-black pt-4;
   }
   .cti-report h3 {
-    @apply text-xl font-medium text-slate-800 mt-6 mb-3;
+    @apply text-lg font-bold text-black mt-6 mb-3;
   }
   .cti-report p {
-    @apply mb-4;
+    @apply mb-4 text-black;
   }
   .cti-report table {
-    @apply w-full border-collapse mb-6 overflow-hidden rounded-lg shadow-sm;
+    @apply w-full border-collapse mb-6 border-2 border-black;
   }
   .cti-report th {
-    @apply bg-blue-50 text-blue-900 font-semibold p-3 text-left border border-slate-200;
+    @apply bg-black text-white font-bold p-3 text-left border border-black;
   }
   .cti-report td {
-    @apply p-3 border border-slate-200 bg-white;
+    @apply p-3 border border-black bg-white text-black;
   }
   .cti-report ul, .cti-report ol {
-    @apply mb-4 ml-6 list-disc;
+    @apply mb-4 ml-6 list-disc text-black;
   }
   .cti-report li {
     @apply mb-2;
+  }
+  .cti-report hr {
+    @apply hidden;
+  }
+  .cti-report a {
+    @apply text-black font-bold no-underline;
   }
   .cti-report code {
     @apply bg-slate-100 text-red-600 px-1.5 py-0.5 rounded font-mono text-sm;
