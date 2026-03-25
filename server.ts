@@ -48,17 +48,14 @@ async function startServer() {
         - Usa un tono profesional, técnico y directo.
         - Utiliza Google Search para obtener los datos más recientes y precisos (incluyendo CISA KEV, NVD, MITRE y avisos de proveedores).
         
-        ESTRUCTURA DE SALIDA OBLIGATORIA (Markdown):
+        ESTRUCTURA DE SALIDA OBLIGATORIA (Markdown Sin usar "---"):
         
-        # Alerta CTI – [CVE-ID]
-
-        ---
-
+      
         ## Resumen Ejecutivo
         Breve descripción de la vulnerabilidad, indicando el componente afectado, tipo de falla y nivel de riesgo.
         Nota: Indica explícitamente si se encuentra o no en el catálogo CISA KEV.
 
-        ---
+    
 
         ## Impacto
         - Tipo de impacto: (RCE / Elevación de privilegios / DoS / Divulgación de información / etc.)
@@ -67,21 +64,21 @@ async function startServer() {
         - Interacción del usuario: Sí / No
         - Alcance: Cambiado / No cambiado
 
-        ---
+        
 
         ## Severidad
         - CVSS v3.1 Base Score: X.X (Crítica / Alta / Media / Baja)
         - Vector CVSS: CVSS:3.1/...
         - Fuente: [NVD / Vendor / etc.]
 
-        ---
+        
 
         ## Matriz de Riesgo CVSS v3.1
         | Producto | Componente | Protocolo | ¿Explotable remotamente sin autenticación? | Puntaje Base | Vector de Ataque | Complejidad del Ataque | Privilegios Requeridos | Interacción del Usuario | Alcance | Confidencialidad | Integridad | Disponibilidad |
         |----------|-----------|-----------|--------------------------------------------|--------------|------------------|------------------------|------------------------|------------------------|---------|------------------|------------|----------------|
         | [Producto] | [Componente] | [Protocolo] | Sí / No | X.X | Red / Local | Baja / Alta | Ninguno / Bajo / Alto | Ninguna / Requerida | Sin cambio / Cambiado | Ninguno / Bajo / Alto | Ninguno / Bajo / Alto | Ninguno / Bajo / Alto |
 
-        ---
+        
 
         ## Debilidad
         Descripción detallada de la vulnerabilidad:
@@ -91,7 +88,7 @@ async function startServer() {
         - Resultado de explotación
         - CWE-XXX: [Nombre de la debilidad]
 
-        ---
+        
 
         ## Información General
         - CVE: [CVE-ID]
@@ -102,7 +99,7 @@ async function startServer() {
         - Última actualización: [Fecha]
         - Fuente: Advisory oficial / NVD
 
-        ---
+        
 
         ## Productos Afectados
         | Producto | Versiones afectadas |
@@ -110,34 +107,29 @@ async function startServer() {
         | [Producto 1] | [Versiones] |
         | [Producto 2] | [Versiones] |
 
-        ---
-
-        ## Parches y Mitigación
-        - Estado del parche: Disponible / No disponible
-        - Acción requerida: Aplicar actualizaciones de seguridad del proveedor
-        Mitigaciones adicionales:
-        - [Lista de mitigaciones]
-
-        ---
-
+        
         ## Explotación en la Naturaleza
         - Explotación activa: Sí / No / Desconocido
         - Incluido en KEV: Sí / No
         - Fecha de inclusión KEV: [Fecha o N/A]
         - Observaciones: [Detalles adicionales]
 
-        ---
-
-        ## Referencias
-        - [Lista de URLs de Advisory, NVD, MITRE, CISA KEV]
-
-        ---
-
+        
         ## Observaciones CTI
         - Posible abuso en campañas reales
         - Técnicas MITRE ATT&CK relacionadas
         - Relevancia para la organización
-      `;
+        
+        ## Mitigaciones y recomendaciones
+        - Estado del parche: Disponible / No disponible
+        - Acción requerida: Aplicar actualizaciones de seguridad del proveedor
+        Mitigaciones adicionales:
+        - [Lista de mitigaciones]
+
+        ## Referencias
+        - [Lista de URLs de Advisory, NVD, MITRE, CISA KEV]
+
+        `;
 
       const result = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
