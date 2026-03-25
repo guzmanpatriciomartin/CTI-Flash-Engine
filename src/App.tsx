@@ -4,7 +4,7 @@
  */
 
 import { useState, FormEvent } from "react";
-import { Search, Loader2, Printer, ShieldAlert, FileText, AlertCircle } from "lucide-react";
+import { Search, Loader2, Printer, ShieldAlert, FileText, AlertCircle, Mail, Copy, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [reportHtml, setReportHtml] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const handleSearch = async (e: FormEvent) => {
     e.preventDefault();
@@ -44,6 +45,30 @@ export default function App() {
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleCopyEmail = async () => {
+    if (!reportHtml) return;
+
+    try {
+      const type = "text/html";
+      const blob = new Blob([reportHtml], { type });
+      const data = [new ClipboardItem({ [type]: blob })];
+      await navigator.clipboard.write(data);
+      
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Error al copiar HTML:", err);
+      // Fallback to simple text copy if ClipboardItem fails
+      try {
+        await navigator.clipboard.writeText(reportHtml);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (fallbackErr) {
+        alert("No se pudo copiar el contenido. Intenta seleccionarlo manualmente.");
+      }
+    }
   };
 
   return (
@@ -146,7 +171,18 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               className="relative"
             >
-              <div className="absolute -top-14 right-0 no-print">
+              <div className="absolute -top-14 right-0 no-print flex gap-3">
+                <button
+                  onClick={handleCopyEmail}
+                  className={`flex items-center gap-2 px-4 py-2 border rounded-lg shadow-sm transition-all font-medium ${
+                    copied 
+                      ? "bg-green-50 border-green-200 text-green-700" 
+                      : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                  }`}
+                >
+                  {copied ? <Check className="w-4 h-4" /> : <Mail className="w-4 h-4" />}
+                  {copied ? "¡Copiado!" : "Copiar para Email"}
+                </button>
                 <button
                   onClick={handlePrint}
                   className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg shadow-sm hover:bg-slate-50 transition-colors font-medium text-slate-700"

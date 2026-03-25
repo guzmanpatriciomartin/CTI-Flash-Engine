@@ -32,9 +32,9 @@ async function startServer() {
 
     try {
       // 1. Generate CTI Report with Gemini using Google Search
-      const geminiApiKey = process.env.GEMINI_API_KEY;
+      const geminiApiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
       if (!geminiApiKey) {
-        return res.status(500).json({ error: "GEMINI_API_KEY no configurada." });
+        return res.status(500).json({ error: "GEMINI_API_KEY no configurada en el servidor (Secrets)." });
       }
 
       const ai = new GoogleGenAI({ apiKey: geminiApiKey });
@@ -151,8 +151,27 @@ async function startServer() {
 
       const markdownReport = result.text || "No se pudo generar el reporte.";
       
-      // 3. Convert Markdown to HTML
-      const htmlReport = md.render(markdownReport);
+      // 3. Convert Markdown to HTML and add inline styles for email compatibility
+      let htmlReport = md.render(markdownReport);
+      
+      // Post-process HTML to add inline styles for email clients
+      htmlReport = htmlReport
+        .replace(/<h1>/gi, '<h1 style="color: #d32f2f; font-family: Arial, sans-serif; font-size: 24px; border-bottom: 2px solid #d32f2f; padding-bottom: 10px; margin-top: 20px; margin-bottom: 15px;">')
+        .replace(/<h2>/gi, '<h2 style="color: #1976d2; font-family: Arial, sans-serif; font-size: 20px; border-bottom: 1px solid #1976d2; padding-bottom: 5px; margin-top: 25px; margin-bottom: 12px;">')
+        .replace(/<h3>/gi, '<h3 style="color: #333333; font-family: Arial, sans-serif; font-size: 18px; margin-top: 20px; margin-bottom: 10px;">')
+        .replace(/<p>/gi, '<p style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333333; margin: 10px 0;">')
+        .replace(/<ul>/gi, '<ul style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #333333; padding-left: 20px; margin-bottom: 15px;">')
+        .replace(/<li>/gi, '<li style="margin-bottom: 5px;">')
+        .replace(/<table>/gi, '<table style="border-collapse: collapse; width: 100%; margin: 20px 0; font-family: Arial, sans-serif; font-size: 13px; border: 1px solid #dddddd;">')
+        .replace(/<thead>/gi, '<thead style="background-color: #f2f2f2;">')
+        .replace(/<th>/gi, '<th style="border: 1px solid #dddddd; text-align: left; padding: 10px; background-color: #f8f9fa; font-weight: bold;">')
+        .replace(/<td>/gi, '<td style="border: 1px solid #dddddd; text-align: left; padding: 10px;">')
+        .replace(/<hr>/gi, '<hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;">')
+        .replace(/<strong>/gi, '<strong style="color: #000000;">')
+        .replace(/<a /gi, '<a style="color: #1976d2; text-decoration: underline;" ');
+
+      // Wrap in a container
+      htmlReport = `<div style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #ffffff;">${htmlReport}</div>`;
 
       res.json({ html: htmlReport, markdown: markdownReport });
     } catch (error: any) {
