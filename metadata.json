@@ -1,0 +1,5 @@
+{
+  "name": "CTI Flash Engine",
+  "description": "Generador de reportes de Inteligencia de Amenazas (CTI) profesional basado en búsqueda web en tiempo real e IA Gemini.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer base {
+  .cti-report {
+    @apply text-slate-800 leading-relaxed;
+  }
+  .cti-report h1 {
+    @apply text-4xl font-bold text-slate-900 mb-6 border-b-2 border-blue-600 pb-2;
+  }
+  .cti-report h2 {
+    @apply text-2xl font-semibold text-blue-700 mt-8 mb-4 border-b border-slate-200 pb-1;
+  }
+  .cti-report h3 {
+    @apply text-xl font-medium text-slate-800 mt-6 mb-3;
+  }
+  .cti-report p {
+    @apply mb-4;
+  }
+  .cti-report table {
+    @apply w-full border-collapse mb-6 overflow-hidden rounded-lg shadow-sm;
+  }
+  .cti-report th {
+    @apply bg-blue-50 text-blue-900 font-semibold p-3 text-left border border-slate-200;
+  }
+  .cti-report td {
+    @apply p-3 border border-slate-200 bg-white;
+  }
+  .cti-report ul, .cti-report ol {
+    @apply mb-4 ml-6 list-disc;
+  }
+  .cti-report li {
+    @apply mb-2;
+  }
+  .cti-report code {
+    @apply bg-slate-100 text-red-600 px-1.5 py-0.5 rounded font-mono text-sm;
+  }
+  .cti-report pre {
+    @apply bg-slate-900 text-slate-100 p-4 rounded-lg mb-6 overflow-x-auto font-mono text-sm;
+  }
+  .cti-report blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-slate-600 mb-4;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: white !important;
+  }
+  .cti-report {
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+}
