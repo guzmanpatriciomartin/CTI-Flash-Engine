@@ -96,25 +96,25 @@ async function startServer() {
         | [Producto 1] | [Versiones] |
         | [Producto 2] | [Versiones] |
 
-        ## Parches y Mitigación
-        - Estado del parche: Disponible / No disponible
-        - Acción requerida: Aplicar actualizaciones de seguridad del proveedor
-        Mitigaciones adicionales:
-        - [Lista de mitigaciones]
-
         ## Explotación en la Naturaleza
         - Explotación activa: Sí / No / Desconocido
         - Incluido en KEV: Sí / No
         - Fecha de inclusión KEV: [Fecha o N/A]
         - Observaciones: [Detalles adicionales]
 
-        ## Referencias
-        - [Lista de URLs de Advisory, NVD, MITRE, CISA KEV]
-
         ## Observaciones CTI
         - Posible abuso en campañas reales
         - Técnicas MITRE ATT&CK relacionadas
         - Relevancia para la organización
+
+        ## Parches y Mitigación
+        - Estado del parche: Disponible / No disponible
+        - Acción requerida: Aplicar actualizaciones de seguridad del proveedor
+        Mitigaciones adicionales:
+        - [Lista de mitigaciones]
+        
+        ## Referencias
+        - [Lista de URLs de Advisory, NVD, MITRE, CISA KEV]
       `;
 
       const result = await ai.models.generateContent({
